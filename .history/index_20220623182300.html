@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>Techno</title>
+</head>
+<body>
+  <div id="app">
+
+    <section class="modal" v-if="produto" ">
+
+      <div class="modal_container">
+        <div class="modal_img">
+          <img :src="produto.img" :alt="produto.nome">
+        </div>
+
+        <div class="modal_dados">
+          <button class="modal_fechar" @click="produto = false">x</button>
+          <span class="modal_preco">{{produto.preco |  formatarPreco}}</span>
+          <h2 class="modal_titulo">{{produto.nome}}</h2>
+          <p>{{produto.descricao}}</p>
+          <button class="modal_btn">Adicionar Item</button>
+
+        </div>
+
+        <div class="avaliacoes">
+          <h2 class="avaliacoes_subtitulo">avaliações</h2>
+        </div>
+
+        <ul>
+          <li v-for="avaliacao in produto.avaliacoes">
+            <p class="avaliacao_descricao">{{avaliacao.descricao}}</p>
+
+            <p class="avaliacao_usuario">
+              {{avaliacao.nome}} | {{avaliacao.estrelas}} Estrelas
+            </p>
+
+          </li>
+          </li>
+        </ul>
+
+      </div>
+
+    </section>
+
+  
+    
+    <section class="produtos">
+      <div class="produto" v-for="item in produtos" :key="item.id" @click="fetchProduto(item.id)">
+        <img :src="item.img" :alt="item.nome">
+        <div >
+          <span class="produto_preco">{{item.preco |  formatarPreco}}</span>
+          <h2>{{item.nome}}</h2>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

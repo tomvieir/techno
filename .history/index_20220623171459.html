@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>Techno</title>
+</head>
+<body>
+  <div id="app">
+
+    <section class="modal" v-if="produto">
+
+      <div class="modal_container">
+        <div class="modal_img">
+          <img :src="{{produto.img}}" alt="">
+
+        </div>
+
+      </div>
+
+      {{produto}}
+
+    </section>
+
+  
+    
+    <section class="produtos">
+      <div class="produtos" v-for="item in produtos" :key="item.id" @click="fetchProduto(item.id)">
+        <img :src="item.img" :alt="item.nome">
+        <div >
+          <span class="produto_preco">{{item.preco |  formatarPreco}}</span>
+          <h2 class="">{{item.nome}}</h2>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
