@@ -3,6 +3,8 @@ const vm = new Vue({
   data: {
     produtos: [],
     produto: false,
+    carrinho: [],
+    carrinhoTotal: 0
   },
   methods: {
     fetchProdutos() {
@@ -28,8 +30,18 @@ const vm = new Vue({
 
     abrirModal(id) {
       this.fetchProduto(id);
+    },
+
+    adicionarItem() {
+      this.produto.estoque--;
+      const {id, nome, preco} = this.produto;
+      this.carrinho.push({id, nome, preco});
+    }, 
+
+    removerItem(index) {
+      this.carrinho.splice(index, 1);
     }
-    
+
   },
   
   filters: {
