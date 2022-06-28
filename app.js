@@ -4,6 +4,7 @@ const vm = new Vue({
     produtos: [],
     produto: false,
     carrinho: [],
+    carrinhoAtivo: false,
 
 
   },
@@ -28,6 +29,11 @@ const vm = new Vue({
     fecharModal({ target, currentTarget }) {  //target é o elemento que foi clicado, currentTarget é o elemento que está sendo clicado
       if (target === currentTarget)
         this.produto = false;
+    },
+
+    clickForaCarrinho({ target, currentTarget }) {  //target é o elemento que foi clicado, currentTarget é o elemento que está sendo clicado
+      if (target === currentTarget)
+        this.carrinhoAtivo = false;
     },
 
     abrirModal(id) {  // abrir modal
@@ -75,7 +81,7 @@ const vm = new Vue({
 
 
 
-  computed: {
+  computed: {  
     carrinhoTotal() {  // calcula o total do carrinho
 
       let total = 0;
@@ -89,7 +95,7 @@ const vm = new Vue({
     },
   },
 
-  filters: {
+  filters: {  // filtro para formatar o preço
     formatarPreco(preco) {  // formata o preço
       return preco.toLocaleString("pt-BR", {
         style: "currency",
